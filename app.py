@@ -203,6 +203,55 @@ if submitted:
 profile = st.session_state.get("profile")
 
 if profile:
+    
+    st.divider()
+    st.subheader("🗺️ Your Career Journey")
+
+    steps = [
+        ("1", "Student Profile", "Set up your career goals"),
+        ("2", "Skill Assessment", "Discover your missing skills"),
+        ("3", "Build Projects", "Practice with real projects"),
+        ("4", "Learning Roadmap", "Follow your weekly plan"),
+        ("5", "Internship Ready", "Prepare for internship applications"),
+    ]
+
+    for number, title, description in steps:
+        st.markdown(
+            f"""
+            <div style="
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                background: white;
+                border: 1px solid #D9E2F0;
+                border-radius: 12px;
+                padding: 14px;
+                margin-bottom: 10px;
+            ">
+                <div style="
+                    background: #163A70;
+                    color: white;
+                    min-width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                ">{number}</div>
+                <div>
+                    <div style="color: #163A70; font-weight: 700;">
+                        {title}
+                    </div>
+                    <div style="color: #64748B; font-size: 14px;">
+                        {description}
+                    </div>
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
     role = profile["role"]
     known = profile["known"]
     tasks = CAREERS[role]["tasks"]
