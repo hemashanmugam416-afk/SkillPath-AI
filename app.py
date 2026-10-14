@@ -96,45 +96,168 @@ hr {
 """, unsafe_allow_html=True)
 
 
+
 # ---------- Career data ----------
 CAREERS = {
     "Software Developer": {
-        "skills": ["Python", "SQL", "Git",
-                   "Problem Solving", "Projects"],
+        "skills": [
+            "Python", "Java", "C++", "SQL",
+            "Git", "Data Structures", "Algorithms",
+            "OOP", "Problem Solving", "Debugging",
+            "Projects", "Testing"
+        ],
+        "tasks": [
+            "Learn programming fundamentals",
+            "Practice Python or Java coding",
+            "Study OOP and data structures",
+            "Practice coding problems",
+            "Learn SQL, Git and GitHub",
+            "Build and upload a project",
+            "Prepare a resume and apply for internships"
+        ]
+    },
+    "Web Developer": {
+        "skills": [
+            "HTML", "CSS", "JavaScript", "React",
+            "Responsive Design", "Git", "APIs",
+            "Debugging", "Projects"
+        ],
+        "tasks": [
+            "Learn HTML page structure",
+            "Practice CSS and responsive layouts",
+            "Learn JavaScript fundamentals",
+            "Build an interactive website",
+            "Learn Git and GitHub",
+            "Build and publish a portfolio website"
+        ]
+    },
+    "Python Developer": {
+        "skills": [
+            "Python", "OOP", "SQL", "Git",
+            "APIs", "Debugging", "Testing",
+            "Data Structures", "Projects"
+        ],
         "tasks": [
             "Revise Python fundamentals",
-            "Practice coding problems",
+            "Learn functions, modules and OOP",
+            "Practice file handling and exceptions",
             "Learn SQL and database basics",
-            "Learn Git and GitHub",
-            "Build a Python project",
-            "Prepare a resume and apply for internships"
+            "Build a Python application",
+            "Practice testing and upload your project"
+        ]
+    },
+    "Java Developer": {
+        "skills": [
+            "Java", "OOP", "SQL", "JDBC",
+            "Data Structures", "Git", "Debugging",
+            "Exception Handling", "Projects"
+        ],
+        "tasks": [
+            "Learn Java syntax and fundamentals",
+            "Study OOP concepts",
+            "Practice collections and exception handling",
+            "Learn SQL and JDBC basics",
+            "Build a Java application",
+            "Practice coding questions and Git"
         ]
     },
     "QA Tester": {
-        "skills": ["Testing", "SQL", "Python",
-                   "Test Cases", "Projects"],
+        "skills": [
+            "Manual Testing", "Test Cases", "SQL",
+            "Python", "Bug Reporting", "SDLC",
+            "STLC", "Selenium", "API Testing",
+            "Projects"
+        ],
         "tasks": [
             "Learn software testing fundamentals",
-            "Write test cases",
+            "Understand SDLC and STLC",
+            "Write test cases and report bugs",
             "Practice SQL queries",
-            "Learn Python basics",
-            "Test a sample application",
-            "Prepare a resume and apply for internships"
+            "Learn basic automation testing",
+            "Test a sample application and document results"
         ]
     },
     "Data Analyst": {
-        "skills": ["Excel", "SQL", "Python",
-                   "Statistics", "Projects"],
+        "skills": [
+            "Excel", "SQL", "Python", "Statistics",
+            "Data Cleaning", "Data Visualization",
+            "Power BI", "Problem Solving", "Projects"
+        ],
         "tasks": [
             "Learn Excel formulas and charts",
             "Practice SQL queries",
-            "Learn Python for data analysis",
             "Study basic statistics",
-            "Build a data analysis project",
-            "Prepare a resume and apply for internships"
+            "Learn Python for data analysis",
+            "Create a dashboard using a visualization tool",
+            "Build a data analysis portfolio project"
+        ]
+    },
+    "AI / ML Engineer": {
+        "skills": [
+            "Python", "Statistics", "Linear Algebra",
+            "Machine Learning", "Data Cleaning",
+            "Pandas", "NumPy", "Model Evaluation",
+            "Git", "Projects"
+        ],
+        "tasks": [
+            "Strengthen Python fundamentals",
+            "Learn basic statistics and linear algebra",
+            "Practice NumPy and Pandas",
+            "Study machine learning fundamentals",
+            "Train and evaluate a beginner ML model",
+            "Build and document an AI project"
+        ]
+    },
+    "Cybersecurity Analyst": {
+        "skills": [
+            "Networking", "Linux", "Cybersecurity Basics",
+            "Operating Systems", "Security Tools",
+            "Log Analysis", "Python", "Risk Assessment",
+            "Projects"
+        ],
+        "tasks": [
+            "Learn networking fundamentals",
+            "Practice Linux commands",
+            "Study security principles",
+            "Learn common threats and defenses",
+            "Practice in legal cybersecurity labs",
+            "Document a beginner security project"
+        ]
+    },
+    "Cloud / DevOps Engineer": {
+        "skills": [
+            "Linux", "Git", "Python", "Networking",
+            "Cloud Fundamentals", "Docker",
+            "CI/CD", "Scripting", "Monitoring",
+            "Projects"
+        ],
+        "tasks": [
+            "Learn Linux and networking basics",
+            "Practice Git and shell commands",
+            "Learn basic Python scripting",
+            "Study cloud computing fundamentals",
+            "Learn Docker and CI/CD concepts",
+            "Deploy a beginner application"
+        ]
+    },
+    "UI/UX Designer": {
+        "skills": [
+            "Figma", "Wireframing", "Prototyping",
+            "User Research", "Usability Testing",
+            "Visual Design", "Accessibility",
+            "Design Systems", "Portfolio"
+        ],
+        "tasks": [
+            "Learn UI/UX design fundamentals",
+            "Practice user research and user flows",
+            "Create wireframes in Figma",
+            "Design an interactive prototype",
+            "Conduct basic usability testing",
+            "Build a design portfolio"
         ]
     }
 }
+
 
 PROJECTS = {
     "Python": "Build a student marks calculator.",
