@@ -1,6 +1,6 @@
 
 import streamlit as st
-
+from google import genaiv
 st.set_page_config(
     page_title="SkillPath AI",
     page_icon="🎓",
@@ -143,11 +143,55 @@ if profile:
     st.header(f"Welcome, {profile['name']}! 👋")
     st.write(f"**Degree:** {profile['degree']}")
     st.write(f"**Career goal:** {role}")
-    st.write(
-        f"**Study plan:** {profile['hours']} "
-        "hour(s) per day"
-    )
+    st.divider()
+    st.subheader("🤖 Your AI Career Mentor")
 
+    if st.button("Generate AI Career Advice", type="primary"):
+        try:
+            api_key = st.secrets["GEMINI_API_KEY"]
+
+            client = genai.Client(api_key=api_key)
+
+            prompt = f"""
+            You are SkillPath AI, a friendly campus-to-career mentor.
+
+            Student degree: {profile['degree']}
+            Target role: {profile['role']}
+            Current level: {profile['level']}
+            Daily study hours: {profile['hours']}
+            Skills already known: {', '.join(profile['known']) or 'None yet'}
+            Skills to learn: {', '.join(gaps) or 'Strengthen existing skills'}
+
+            Give this student:
+            1. A personalized 4-week learning roadmap.
+            2. Three beginner-friendly project ideas.
+            3. Practical internship preparation tips.
+            4. A realistic daily study routine.
+
+            Use simple English, clear headings and bullet points.
+            Make the advice practical for a college student.
+            Do not promise jobs or guaranteed placements.
+            """
+
+            with st.spinner("Your AI mentor is preparing advice..."):
+                response = client.models.generate_content(
+                    model="gemini-3.5-flash-lite",
+                    contents=prompt
+                )
+
+            st.markdown(response.text)
+
+        except KeyError:
+            st.error(
+                "API key not found. Check Streamlit Settings > Secrets."
+            )
+        except Exception as e:
+            st.error(
+                "AI advice could not be generated. "
+                "Please check your API key, model access, "
+                "and API usage limits."
+            )
+            st.caption(str(e))
     left, right = st.columns(2)
 
     with left:
