@@ -7,149 +7,66 @@ st.set_page_config(
     layout="wide"
 )
 
+
 st.markdown("""
-
-/* Force all student form fields to light blue */
-.stTextInput div[data-baseweb="input"],
-.stTextInput div[data-baseweb="input"] input,
-.stSelectbox div[data-baseweb="select"] > div,
-.stMultiSelect div[data-baseweb="select"] > div {
-    background: #EAF3FF !important;
-    background-color: #EAF3FF !important;
-    color: #163A70 !important;
-    border: 1px solid #B7D2F5 !important;
-    border-radius: 10px !important;
-    -webkit-text-fill-color: #163A70 !important;
-}
-
-/* Text inside input boxes */
-.stTextInput input {
-    color: #163A70 !important;
-    -webkit-text-fill-color: #163A70 !important;
-    caret-color: #163A70 !important;
-}
-
-/* Role and level dropdown text */
-.stSelectbox [data-baseweb="select"] *,
-.stMultiSelect [data-baseweb="select"] * {
-    color: #163A70 !important;
-}
-
-/* Skills selected chips */
-.stMultiSelect [data-baseweb="tag"] {
-    background-color: #D5E7FF !important;
-    border: 1px solid #B7D2F5 !important;
-}
-
-/* Dropdown options menu */
-div[data-baseweb="popover"],
-div[data-baseweb="menu"],
-div[role="listbox"],
-div[role="option"] {
-    background-color: #EAF3FF !important;
-    color: #163A70 !important;
-}
-
-/* Daily learning time slider */
-.stSlider [data-baseweb="slider"] {
-    accent-color: #2457A7;
-}
-
 <style>
-/* Main app background */
 .stApp {
     background-color: #F7F9FC;
     color: #1E293B;
 }
 
-/* Main headings */
 h1, h2, h3 {
     color: #163A70 !important;
-    font-weight: 700 !important;
 }
 
-/* Buttons */
-div.stButton > button {
-    background-color: #163A70;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-weight: 600;
-    transition: 0.2s ease;
-}
-
-/* Button hover */
-div.stButton > button:hover {
-    background-color: #2457A7;
-    color: white;
-    border: 1px solid #2457A7;
-}
-
-/* Light input boxes */
-.stTextInput input,
-.stTextArea textarea,
-.stNumberInput input {
-    background-color: #FFFFFF !important;
-    color: #1E293B !important;
-    border: 1px solid #CBD5E1 !important;
-    border-radius: 10px !important;
-}
-
-/* Placeholder text */
-.stTextInput input::placeholder {
-    color: #94A3B8 !important;
-    opacity: 1;
-}
-
-
-/* Light input boxes */
+/* Name and degree boxes */
 .stTextInput div[data-baseweb="input"] {
-    background-color: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
+    background-color: #EAF3FF !important;
+    border: 1px solid #B7D2F5 !important;
     border-radius: 10px !important;
 }
 
 .stTextInput input {
-    background-color: transparent !important;
-    color: #1E293B !important;
+    background-color: #EAF3FF !important;
+    color: #163A70 !important;
+    -webkit-text-fill-color: #163A70 !important;
 }
 
-/* Light dropdown boxes */
+/* Role and level dropdowns */
 .stSelectbox div[data-baseweb="select"] > div {
-    background-color: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
+    background-color: #EAF3FF !important;
+    border: 1px solid #B7D2F5 !important;
     border-radius: 10px !important;
 }
 
 .stSelectbox div[data-baseweb="select"] span {
-    color: #1E293B !important;
-}
-
-/* Dropdown options menu */
-div[data-baseweb="popover"] ul,
-div[data-baseweb="menu"] {
-    background-color: #FFFFFF !important;
-}
-
-div[role="option"] {
-    background-color: #FFFFFF !important;
-    color: #1E293B !important;
-}
-
-div[role="option"]:hover {
-    background-color: #E8EFFA !important;
     color: #163A70 !important;
 }
 
+/* Skills multiselect */
+.stMultiSelect div[data-baseweb="select"] > div {
+    background-color: #EAF3FF !important;
+    border: 1px solid #B7D2F5 !important;
+    border-radius: 10px !important;
+}
 
+.stMultiSelect div[data-baseweb="tag"] {
+    background-color: #D5E7FF !important;
+}
 
-/* Sidebar */
+/* Buttons */
+div.stButton > button,
+div.stFormSubmitButton > button {
+    background-color: #163A70 !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+/* Sidebar and dividers */
 section[data-testid="stSidebar"] {
     background-color: #EDF2FA;
 }
 
-/* Dividers */
 hr {
     border-color: #D9E2F0;
 }
