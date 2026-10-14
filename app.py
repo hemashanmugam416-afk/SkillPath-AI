@@ -1,6 +1,6 @@
 
 import streamlit as st
-from google import genaiv
+from google import genai
 st.set_page_config(
     page_title="SkillPath AI",
     page_icon="🎓",
