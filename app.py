@@ -200,6 +200,10 @@ if profile:
 
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = []
+     
+    if st.button("🗑️ Clear Chat"):
+        st.session_state.chat_history = []
+        st.rerun()
 
     for message in st.session_state.chat_history:
         with st.chat_message(message["role"]):
