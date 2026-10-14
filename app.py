@@ -8,6 +8,53 @@ st.set_page_config(
 )
 
 st.markdown("""
+
+/* Force all student form fields to light blue */
+.stTextInput div[data-baseweb="input"],
+.stTextInput div[data-baseweb="input"] input,
+.stSelectbox div[data-baseweb="select"] > div,
+.stMultiSelect div[data-baseweb="select"] > div {
+    background: #EAF3FF !important;
+    background-color: #EAF3FF !important;
+    color: #163A70 !important;
+    border: 1px solid #B7D2F5 !important;
+    border-radius: 10px !important;
+    -webkit-text-fill-color: #163A70 !important;
+}
+
+/* Text inside input boxes */
+.stTextInput input {
+    color: #163A70 !important;
+    -webkit-text-fill-color: #163A70 !important;
+    caret-color: #163A70 !important;
+}
+
+/* Role and level dropdown text */
+.stSelectbox [data-baseweb="select"] *,
+.stMultiSelect [data-baseweb="select"] * {
+    color: #163A70 !important;
+}
+
+/* Skills selected chips */
+.stMultiSelect [data-baseweb="tag"] {
+    background-color: #D5E7FF !important;
+    border: 1px solid #B7D2F5 !important;
+}
+
+/* Dropdown options menu */
+div[data-baseweb="popover"],
+div[data-baseweb="menu"],
+div[role="listbox"],
+div[role="option"] {
+    background-color: #EAF3FF !important;
+    color: #163A70 !important;
+}
+
+/* Daily learning time slider */
+.stSlider [data-baseweb="slider"] {
+    accent-color: #2457A7;
+}
+
 <style>
 /* Main app background */
 .stApp {
