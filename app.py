@@ -192,70 +192,65 @@ if profile:
                 "and API usage limits."
             )
             st.caption(str(e))
-                st.divider()
-    st.header("🤖 SkillPath AI Chatbot")
-    st.write("Ask me anything about skills, careers, projects, or internships!")
+            st.divider()
+            st.header("🤖 SkillPath AI Chatbot")
+            st.write("Ask me anything about skills, careers, projects, or internships!")
 
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = []
+            if "chat_history" not in st.session_state:
+                st.session_state.chat_history = []
+            for message in st.session_state.chat_history:
+                with st.chat_message(message["role"]):
+                    st.markdown(message["content"])
 
-    for message in st.session_state.chat_history:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-
-    user_question = st.chat_input(
-        "Ask your career question here..."
-    )
-
-    if user_question:
-        st.session_state.chat_history.append({
-            "role": "user",
-            "content": user_question
-        })
-
-        with st.chat_message("user"):
-            st.markdown(user_question)
-
-        try:
-            client = genai.Client(
-                api_key=st.secrets["GEMINI_API_KEY"]
+            user_question = st.chat_input(
+                "Ask your career question here..."
             )
 
-            conversation = "\n".join(
-                f"{msg['role']}: {msg['content']}"
-                for msg in st.session_state.chat_history[-10:]
-            )
-
-            prompt = f"""
-            You are SkillPath AI, a friendly campus-to-career mentor.
-            Help college students learn skills, build projects,
-            prepare resumes, and find internships.
-            Give practical, beginner-friendly advice in simple English.
-            Do not guarantee jobs or placements.
-
-            Conversation:
-            {conversation}
-
-            Reply to the latest student question.
-            """
-
-            with st.chat_message("assistant"):
-                with st.spinner("Thinking..."):
-                    response = client.models.generate_content(
-                        model="gemini-2.5-flash",
-                        contents=prompt
-                    )
-                    answer = response.text
-                    st.markdown(answer)
-
-            st.session_state.chat_history.append({
-                "role": "assistant",
-                "content": answer
-            })
-
-        except Exception as e:
-            st.error("Sorry, the chatbot could not reply.")
-            st.caption(str(e))
+           if user_question:
+               st.session_state.chat_history.append({
+                   "role": "user",
+                   "content": user_question
+               })
+               
+               with st.chat_message("user"):
+                   st.markdown(user_question)
+                   
+               try:
+                   client = genai.Client(
+                       api_key=st.secrets["GEMINI_API_KEY"]
+                   )
+                   conversation = "\n".join(
+                       f"{msg['role']}: {msg['content']}"
+                       for msg in st.session_state.chat_history[-10:]
+                   )
+                   prompt = f"""
+                   You are SkillPath AI, a friendly campus-to-career mentor.
+                   Help college students learn skills, build projects,
+                   prepare resumes, and find internships.
+                   Give practical, beginner-friendly advice in simple English.
+                   Do not guarantee jobs or placements.
+                   
+                   Conversation:
+                   {conversation}
+                   
+                   Reply to the latest student question.
+                   """
+                   
+                   with st.chat_message("assistant"):
+                       with st.spinner("Thinking..."):
+                           response = client.models.generate_content(
+                               model="gemini-2.5-flash",
+                               contents=prompt
+                           )
+                           answer = response.text
+                           st.markdown(answer)
+                   st.session_state.chat_history.append({
+                       "role": "assistant",
+                       "content": answer
+                   })
+               except Exception as e:
+                   st.error("Sorry, the chatbot could not reply.")
+                   st.caption(str(e))
     left, right = st.columns(2)
 
     with left:
