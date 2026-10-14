@@ -39,10 +39,29 @@ div.stButton > button:hover {
     border: 1px solid #2457A7;
 }
 
-/* Input fields */
-.stTextInput input {
-    border-radius: 8px;
+/* Light input boxes */
+.stTextInput input,
+.stTextArea textarea,
+.stNumberInput input {
+    background-color: #FFFFFF !important;
+    color: #1E293B !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 10px !important;
 }
+
+/* Placeholder text */
+.stTextInput input::placeholder {
+    color: #94A3B8 !important;
+    opacity: 1;
+}
+
+/* Select boxes */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    color: #1E293B !important;
+    border-radius: 10px !important;
+}
+
 
 /* Sidebar */
 section[data-testid="stSidebar"] {
