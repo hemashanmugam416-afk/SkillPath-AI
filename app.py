@@ -114,12 +114,15 @@ if "completed" not in st.session_state:
     st.session_state.completed = {}
 
 # ---------- Header ----------
+
 st.title("🎓 SkillPath AI")
-st.subheader("Your Campus-to-Career Assistant")
+st.subheader("Your Personal AI Career Mentor 🚀")
 st.write(
-    "Discover skill gaps, build a career roadmap "
-    "and track your internship preparation."
+    "Turn your career goals into action. Discover skill gaps, "
+    "explore projects, build your learning roadmap, and prepare "
+    "for internships — all in one place."
 )
+
 
 st.info(
     "Version 1: A rule-based career planning prototype. "
