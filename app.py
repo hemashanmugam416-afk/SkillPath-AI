@@ -9,28 +9,6 @@ st.set_page_config(
 
 
 st.markdown("""
-/* Degree text box */
-div[data-testid="stTextInput"] input {
-    background-color: #EAF3FF !important;
-    color: #163A70 !important;
-    -webkit-text-fill-color: #163A70 !important;
-}
-
-/* All dropdowns */
-div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
-    background-color: #EAF3FF !important;
-}
-
-/* Skills selection box */
-div[data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
-    background-color: #EAF3FF !important;
-}
-
-/* Dropdown and skills text */
-div[data-testid="stSelectbox"] *,
-div[data-testid="stMultiSelect"] * {
-    color: #163A70 !important;
-}
 <style>
 .stApp {
     background-color: #F7F9FC;
