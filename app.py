@@ -55,12 +55,46 @@ div.stButton > button:hover {
     opacity: 1;
 }
 
-/* Select boxes */
-.stSelectbox div[data-baseweb="select"] > div {
+
+/* Light input boxes */
+.stTextInput div[data-baseweb="input"] {
     background-color: #FFFFFF !important;
-    color: #1E293B !important;
+    border: 1px solid #CBD5E1 !important;
     border-radius: 10px !important;
 }
+
+.stTextInput input {
+    background-color: transparent !important;
+    color: #1E293B !important;
+}
+
+/* Light dropdown boxes */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #FFFFFF !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 10px !important;
+}
+
+.stSelectbox div[data-baseweb="select"] span {
+    color: #1E293B !important;
+}
+
+/* Dropdown options menu */
+div[data-baseweb="popover"] ul,
+div[data-baseweb="menu"] {
+    background-color: #FFFFFF !important;
+}
+
+div[role="option"] {
+    background-color: #FFFFFF !important;
+    color: #1E293B !important;
+}
+
+div[role="option"]:hover {
+    background-color: #E8EFFA !important;
+    color: #163A70 !important;
+}
+
 
 
 /* Sidebar */
