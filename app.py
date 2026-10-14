@@ -329,3 +329,18 @@ st.divider()
 st.caption(
     "SkillPath AI | Learn • Build • Track • Grow"
 )
+
+if st.sidebar.button("Check Available Gemini Models"):
+    try:
+        client = genai.Client(
+            api_key=st.secrets["GEMINI_API_KEY"]
+        )
+
+        st.subheader("Available Gemini Models")
+
+        for model in client.models.list():
+            if "generateContent" in (model.supported_actions or []):
+                st.write(model.name)
+
+    except Exception as e:
+        st.error(f"Could not list models: {e}")
