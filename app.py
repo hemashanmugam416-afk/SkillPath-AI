@@ -7,6 +7,56 @@ st.set_page_config(
     layout="wide"
 )
 
+st.markdown("""
+<style>
+/* Main app background */
+.stApp {
+    background-color: #F7F9FC;
+    color: #1E293B;
+}
+
+/* Main headings */
+h1, h2, h3 {
+    color: #163A70 !important;
+    font-weight: 700 !important;
+}
+
+/* Buttons */
+div.stButton > button {
+    background-color: #163A70;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+/* Button hover */
+div.stButton > button:hover {
+    background-color: #2457A7;
+    color: white;
+    border: 1px solid #2457A7;
+}
+
+/* Input fields */
+.stTextInput input {
+    border-radius: 8px;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #EDF2FA;
+}
+
+/* Dividers */
+hr {
+    border-color: #D9E2F0;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 # ---------- Career data ----------
 CAREERS = {
     "Software Developer": {
