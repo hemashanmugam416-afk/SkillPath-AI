@@ -615,6 +615,88 @@ if profile:
                 "Build more advanced projects and "
                 "demonstrate your skills."
             )
+    
+    # ---------- Project & Portfolio Builder ----------
+    st.divider()
+    st.header("🚀 7. Project & Portfolio Builder")
+
+    st.write(
+        "Create a project plan for your target career "
+        "and prepare it for your GitHub portfolio."
+    )
+
+    project_type = st.selectbox(
+        "Choose your project level",
+        ["Beginner", "Intermediate", "Advanced"],
+        key="portfolio_project_level"
+    )
+
+    project_focus = st.selectbox(
+        "Choose a project area",
+        [
+            "Skill-based project",
+            "Real-world problem",
+            "AI-powered project",
+            "Web application"
+        ],
+        key="portfolio_project_focus"
+    )
+
+    if st.button("Generate My Project Plan"):
+        try:
+            client = genai.Client(
+                api_key=st.secrets["GEMINI_API_KEY"]
+            )
+
+            prompt = f"""
+            You are a project mentor for college students.
+
+            Target career: {profile['role']}
+            Student level: {profile['level']}
+            Project difficulty: {project_type}
+            Project focus: {project_focus}
+            Skills to develop: {', '.join(gaps) or 'Advanced practice'}
+
+            Create one practical student project plan.
+
+            Include:
+            1. Project title
+            2. Problem statement
+            3. Project description
+            4. Five main features
+            5. Technologies required
+            6. Step-by-step development plan
+            7. A GitHub README template with project title,
+               description, features, technologies and setup steps.
+
+            Keep it realistic for a college student.
+            Use simple English and clear headings.
+            Do not claim the project has already been built.
+            """
+
+            with st.spinner("Building your project plan..."):
+                response = client.models.generate_content(
+                    model="gemini-3.5-flash-lite",
+                    contents=prompt
+                )
+
+            st.session_state["portfolio_project_plan"] = response.text
+
+        except Exception as e:
+            st.error("Could not generate the project plan.")
+            st.caption(str(e))
+
+    if st.session_state.get("portfolio_project_plan"):
+        st.markdown(
+            st.session_state["portfolio_project_plan"]
+        )
+
+        st.download_button(
+            "Download Project Plan",
+            data=st.session_state["portfolio_project_plan"],
+            file_name="skillpath_project_plan.md",
+            mime="text/markdown"
+        )
 
     st.divider()
     st.header("4. Your Learning Roadmap")
