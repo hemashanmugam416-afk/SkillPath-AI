@@ -740,6 +740,57 @@ if profile:
             "Next action: Start with one incomplete task "
             "and record your progress."
         )
+     
+    # ---------- Career Readiness Score ----------
+    st.divider()
+    st.header("🎯 8. Career Readiness Score")
+
+    total_tasks = len(tasks)
+    completed_tasks = len(completed)
+
+    roadmap_score = (
+        completed_tasks / total_tasks * 100
+        if total_tasks > 0 else 0
+    )
+
+    known_skills = profile.get("skills", [])
+    total_skills = len(CAREERS.get(profile["role"], {}).get("skills", []))
+
+    if total_skills > 0:
+        matching_skills = sum(
+            1 for skill in known_skills
+            if skill.lower() in [
+                s.lower()
+                for s in CAREERS[profile["role"]]["skills"]
+            ]
+        )
+        skills_score = min(matching_skills / total_skills * 100, 100)
+    else:
+        skills_score = 0
+
+    project_score = (
+        100
+        if st.session_state.get("portfolio_project_plan")
+        else 0
+    )
+
+    readiness_score = round(
+        (roadmap_score * 0.4)
+        + (skills_score * 0.4)
+        + (project_score * 0.2)
+    )
+
+    st.metric("Your Learning Progress Score", f"{readiness_score}%")
+    st.progress(readiness_score / 100)
+
+    st.write(f"📚 Roadmap completion: {roadmap_score:.0f}%")
+    st.write(f"💻 Matching skills: {skills_score:.0f}%")
+    st.write(f"🚀 Project plan: {project_score:.0f}%")
+
+    st.caption(
+        "This score tracks your progress in SkillPath AI. "
+        "It is not a guarantee of job readiness or employment."
+    )
 
     # ---------- Personalized Weekly Planner ----------
     st.divider()
