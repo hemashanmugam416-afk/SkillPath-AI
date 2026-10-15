@@ -584,15 +584,37 @@ if profile:
     total_days = 7
     daily_hours = profile["hours"]
 
+    
     for day in range(total_days):
         task_index = min(
             day * len(weekly_tasks) // total_days,
             len(weekly_tasks) - 1
         )
 
+        task = weekly_tasks[task_index]
         st.markdown(f"**Day {day + 1}**")
-        st.write(weekly_tasks[task_index])
-        st.caption(f"⏱️ Suggested study time: {daily_hours} hour(s)")
+        st.write(task)
+
+        done = st.checkbox(
+            f"Completed Day {day + 1}",
+            key=f"weekly_plan_{profile['name']}_{day}"
+        )
+
+        st.caption(
+            f"⏱️ Suggested study time: {daily_hours} hour(s)"
+        )
+
+    completed_days = sum(
+        st.session_state.get(
+            f"weekly_plan_{profile['name']}_{day}", False
+        )
+        for day in range(total_days)
+    )
+
+    st.subheader("📊 Weekly Progress")
+    st.progress(completed_days / total_days)
+    st.write(f"{completed_days} of {total_days} days completed")
+
 
 st.divider()
 st.caption(
