@@ -571,6 +571,29 @@ if profile:
             "and record your progress."
         )
 
+    # ---------- Personalized Weekly Planner ----------
+    st.divider()
+    st.header("📅 5. Your Personalized Weekly Planner")
+
+    st.write(
+        "Your weekly plan is based on your career goal, "
+        "current level, and daily learning hours."
+    )
+
+    weekly_tasks = tasks
+    total_days = 7
+    daily_hours = profile["hours"]
+
+    for day in range(total_days):
+        task_index = min(
+            day * len(weekly_tasks) // total_days,
+            len(weekly_tasks) - 1
+        )
+
+        st.markdown(f"**Day {day + 1}**")
+        st.write(weekly_tasks[task_index])
+        st.caption(f"⏱️ Suggested study time: {daily_hours} hour(s)")
+
 st.divider()
 st.caption(
     "SkillPath AI | Learn • Build • Track • Grow"
