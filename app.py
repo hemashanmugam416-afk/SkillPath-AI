@@ -435,7 +435,95 @@ if profile:
             )
             st.caption(str(e))
             st.divider()
-            
+    
+    # ---------- AI Mock Interview ----------
+    st.divider()
+    st.header("🎤 6. AI Mock Interview")
+    st.write(
+        "Practice interview questions for your target role "
+        "and get feedback from your AI career mentor."
+    )
+
+    if "interview_question" not in st.session_state:
+        st.session_state.interview_question = ""
+
+    if "interview_answer" not in st.session_state:
+        st.session_state.interview_answer = ""
+
+    if st.button("Generate Interview Question"):
+        try:
+            client = genai.Client(
+                api_key=st.secrets["GEMINI_API_KEY"]
+            )
+
+            prompt = f"""
+            You are a beginner-friendly technical interviewer.
+            The student's target role is {profile['role']}.
+            Current skill level: {profile['level']}.
+
+            Ask exactly ONE relevant interview question.
+            Keep it suitable for the student's skill level.
+            Do not provide the answer.
+            """
+
+            with st.spinner("Preparing your question..."):
+                response = client.models.generate_content(
+                    model="gemini-3.5-flash-lite",
+                    contents=prompt
+                )
+
+            st.session_state.interview_question = response.text
+            st.session_state.interview_answer = ""
+
+        except Exception as e:
+            st.error("Could not generate a question. Check Gemini API access.")
+            st.caption(str(e))
+
+    if st.session_state.interview_question:
+        st.info(st.session_state.interview_question)
+
+        answer = st.text_area(
+            "Your answer",
+            key="mock_interview_answer_input",
+            placeholder="Type your interview answer here..."
+        )
+
+        if st.button("Get AI Feedback"):
+            if not answer.strip():
+                st.warning("Please type your answer first.")
+            else:
+                try:
+                    client = genai.Client(
+                        api_key=st.secrets["GEMINI_API_KEY"]
+                    )
+
+                    feedback_prompt = f"""
+                    Act as a supportive technical interviewer.
+                    Target role: {profile['role']}
+                    Interview question: {st.session_state.interview_question}
+                    Student answer: {answer}
+
+                    Give:
+                    1. What was good.
+                    2. What needs improvement.
+                    3. A simple example of a stronger answer.
+                    Be encouraging and beginner-friendly.
+                    Do not claim this is a real hiring assessment.
+                    """
+
+                    with st.spinner("Reviewing your answer..."):
+                        feedback = client.models.generate_content(
+                            model="gemini-3.5-flash-lite",
+                            contents=feedback_prompt
+                        )
+
+                    st.subheader("📝 Your Interview Feedback")
+                    st.markdown(feedback.text)
+
+                except Exception as e:
+                    st.error("Could not generate feedback. Check Gemini API access.")
+                    st.caption(str(e))
+        
     st.divider()
     st.header("🤖 SkillPath AI Chatbot")
     st.write("Ask me about skills, careers, projects, or internships!")
