@@ -1,4 +1,5 @@
 
+
 import streamlit as st
 from google import genai
 st.set_page_config(
@@ -753,7 +754,7 @@ if profile:
         if total_tasks > 0 else 0
     )
 
-    known_skills = profile.get("skills", [])
+    known_skills = profile.get("known", [])
     total_skills = len(CAREERS.get(profile["role"], {}).get("skills", []))
 
     if total_skills > 0:
