@@ -93,3 +93,73 @@ if not st.session_state.auth_user:
     st.title("🔐 Welcome to SkillPath AI")
     st.write("Create your own account or sign in to access your personal career workspace.")
     signup_tab, login_tab = st.tabs(["Create account", "Log in"])
+    with signup_tab:
+        st.subheader("Create your account")
+
+        signup_email = st.text_input(
+            "Email address",
+            key="signup_email"
+        )
+        signup_password = st.text_input(
+            "Create password",
+            type="password",
+            key="signup_password"
+        )
+        confirm_password = st.text_input(
+            "Confirm password",
+            type="password",
+            key="confirm_password"
+        )
+
+        if st.button("Create account", key="signup_button"):
+            if not signup_email.strip() or not signup_password:
+                st.warning("Please enter your email and password.")
+            elif len(signup_password) < 8:
+                st.warning("Password must be at least 8 characters.")
+            elif signup_password != confirm_password:
+                st.warning("Passwords do not match.")
+            else:
+                try:
+                    result = supabase.auth.sign_up({
+                        "email": signup_email.strip(),
+                        "password": signup_password
+                    })
+                    if result.user:
+                        st.success(
+                            "Account created! Check your email "
+                            "if confirmation is required, then log in."
+                        )
+                    else:
+                        st.info("Check your email to complete signup.")
+                except Exception as e:
+                    st.error(f"Signup failed: {e}")
+
+    with login_tab:
+        st.subheader("Welcome back")
+
+        login_email = st.text_input(
+            "Email address",
+            key="login_email"
+        )
+        login_password = st.text_input(
+            "Password",
+            type="password",
+            key="login_password"
+        )
+
+        if st.button("Log in", key="login_button"):
+            if not login_email.strip() or not login_password:
+                st.warning("Please enter your email and password.")
+            else:
+                try:
+                    result = supabase.auth.sign_in_with_password({
+                        "email": login_email.strip(),
+                        "password": login_password
+                    })
+                    st.session_state.auth_user = result.user
+                    st.session_state.auth_session = result.session
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Login failed: {e}")
+
+    st.stop()
